@@ -1,6 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    hlooo
-    </body>
-    </html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Test</title>
+    <style>
+       body {
+            background-color: bisque;
+            background-image: url(aipic.webp);
+            background-size: cover;
+            padding: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+       }
+       .content {
+            background: rgba(228, 228, 228, 0.5);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px black;
+            text-align: center;
+            width: 50%;
+            margin: auto;
+            transition: 0.4s ease-in-out;
+       }
+       .content:hover{
+           transform: scale(1.05);
+       }
+       .marquee h2 {
+            color: rgb(238, 232, 231);
+            font-size: 24px;
+            font-family: sans-serif;
+       }
+       button {
+            width: 50%;
+            padding: 10px;
+            background-color: rgba(250, 75, 6, 0.603);
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+       }
+       button:hover {
+            background-color: #ec5e0c;
+            color: white;
+       }
+       input, select {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+       }
+
+       h4{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-style: oblique;
+       } 
+       
+
+    </style>
+</head>
+<body>
+        <div class="marquee">
+            <marquee behavior="alternate" direction="up" height="50px">
+                <marquee behavior="alternate" direction="right" height="50%">
+               <h2>❤️LOVE TEST❤️</h2> 
+            </marquee> 
+                  </marquee>
+        </div>
+        <div class="content">
+        <form onsubmit="return login(event)">
+            <label>What was your first opinion about me?</label><br>
+            <input type="text" placeholder="Anything..." required><br>
+
+            <label>What do you like most about me?</label><br>
+            <input type="text" placeholder="Tell me..." required><br>
+
+            <label>Why did you fall for me?</label><br>
+            <input type="text" placeholder="Say it..." required><br>
+
+            <label>Rate our relationship:</label><br>
+            <select name="Rate" required>
+                <option value="">Choose honestly...</option>
+                <option value="1">Nalla poguthu</option>
+                <option value="2">Sandhoshama iruke</option>
+                <option value="3">Nee enna nalla pathukura</option>
+                <option value="4">Starting la nalla irunthuchu</option>
+                <option value="5">Boring ah poguthu (Serupu pinjirum 😂)</option>
+            </select><br>
+
+            <label>How happy are you in this relationship? 😊</label><br>
+            <input type="range" min="1" max="100"> <br>
+
+            <label>Pick a memory:</label><br>
+            <select>
+                <option value="1">🌅 First Date</option>
+                <option value="2">🎉 Anniversary</option>
+                <option value="3">❤️ first time i held ur hands</option>
+                <option value="3">😂 the hair correction</option>
+            </select>
+
+         <input type="file" accept="audio/*">
+
+                  
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function login(event) {
+            event.preventDefault();
+            window.location.href = "log3.html"
+
+            return false;
+        }
+    </script>
+
+</body>
+</html>
