@@ -61,15 +61,16 @@
     </style>
 </head>
 <body>
-        <div class="marquee">
-            <marquee behavior="alternate" direction="up" height="50px">
-                <marquee behavior="alternate" direction="right" height="50%">
-               <h2>❤️LOVE TEST❤️</h2> 
+    <div class="marquee">
+        <marquee behavior="alternate" direction="up" height="50px">
+            <marquee behavior="alternate" direction="right" height="50%">
+                <h2>❤️ LOVE TEST ❤️</h2> 
             </marquee> 
-                  </marquee>
-        </div>
-        <div class="content">
-        <form onsubmit="return login(event)">
+        </marquee>
+    </div>
+    
+    <div class="content">
+        <form onsubmit="return login()">
             <label>What was your first opinion about me?</label><br>
             <input type="text" placeholder="Anything..." required><br>
 
@@ -90,26 +91,28 @@
             </select><br>
 
             <label>How happy are you in this relationship? 😊</label><br>
-            <input type="range" min="1" max="100"> <br>
+            <input type="range" min="1" max="100"><br>
 
             <label>Pick a memory:</label><br>
             <select>
                 <option value="1">🌅 First Date</option>
-                <option value="2">🎉 Anniversary</option>
-                <option value="3">❤️ first time i held ur hands</option>
-                <option value="3">😂 the hair correction</option>
-            </select>
+                <option value="2">🎉 the days we roam around T nagar</option>
+                <option value="3">❤️ First time I held your hands</option>
+                <option value="4">😂 The hair correction</option>
+                <option value="5">🌚theatre experience</option>
+            </select><br>
+
+            <button type="submit">CLICK HERE</button>
         </form>
-        <div>
-            <button onclick="login()">CLICK HERE</button>
-        </div>
     </div>
-    
+
     <script>
         function login() {
-            window.location.href = "log3.html"
+            window.location.href = "log3.html";
+            return false; 
         }
     </script>
+</body>
 
 </body>
 </html>
