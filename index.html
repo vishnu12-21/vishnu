@@ -10,19 +10,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-repeat: no-repeat;
             background-image:url(aipic2.webp) ;
             background-size: cover;
             background-size: 100%;
             height: 100vh;
             
         }
-        @media (max-width: 768px) {
-    body {
-        background-size: contain; 
-        background-position: center;
-        background-attachment: fixed;
-    }
-}
 
         .login-container {
             background: rgba(228, 228, 228, 0.5);
@@ -60,6 +54,31 @@
             font-size: 14px;
             margin-top: 10px;
         }
+        @media screen and (max-width: 480px){
+            .login-container{
+                width: 90px;
+                padding: 30px;
+            }
+            h2{
+                font-size: 20px;
+            }
+            label{
+                font-size: 15px;
+            }
+            input{
+                padding: 8px;
+                font-size: 14px;
+            }
+            button{
+                padding: 8px;
+                font-size: 14px; 
+            }
+            .error{
+                font-size: 12px;
+            }
+        }
+            
+
     </style>
 </head>
 <body>
