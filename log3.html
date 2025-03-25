@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaadhal.com</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
         body {
-            font-family: 'Vidaloka', serif;
+            font-family: 'Dancing Script', cursive;
             background-image: url(hands.jpg);
             background-size: cover;
             background-position: center;
@@ -15,123 +17,150 @@
             background-attachment: fixed;
             display: flex;
             flex-direction: column;
-            justify-content: center; 
+            justify-content: center;
             align-items: center;
             min-height: 100vh;
+            text-align: center;
         }
 
         .box {
-            background: rgba(139, 139, 139, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0px 0px 10px rgba(242, 242, 243, 0.938);
-            width: 70%;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8);
+            width: 60%;
             text-align: center;
             margin: 20px auto;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, opacity 0.5s;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
 
+        .box:hover {
+            transform: scale(1.05);
         }
 
         .box2 {
-            padding: 60px;
-            border-radius: 40px;
             width: 50%;
             text-align: center;
+            margin: 20px auto;
         }
 
         img {
-            width: 20vw;
+            width: 25vw;
             height: 50vh;
             object-fit: cover;
-            justify-items: center;
-            border: 10px solid #f1f2f3;
+            border: 8px solid #ffffff;
             border-radius: 50px;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         h2 {
-            color: azure;
+            color: #ffcc00;
+            font-size: 28px;
+            text-shadow: 2px 2px 5px black;
         }
 
-        @media (max-width: 480px) {
-            .box {
-                width: 95%;
-                padding: 20px;
-                text-align: center;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
             }
 
-            .box h1 {
-                text-align: center;
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background-color: #ff4081;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #ff1a66;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .box {
+                width: 90%;
+                padding: 20px;
             }
 
             .box2 {
-                width: 100%;
-                text-align: center;
-            }
-
-            .box2 h1 {
-                text-align: center;
+                width: 90%;
             }
 
             img {
-                width: 60vw;
-                height: 35vh;
+                width: 70vw;
+                height: 40vh;
                 border-radius: 20px;
             }
 
-            h1 {
-                font-size: 18px;
-                text-align: center;
+            h2 {
+                font-size: 22px;
             }
 
-            h2 {
-                font-size: 16px;
+            button {
+                font-size: 18px;
+                padding: 10px 20px;
             }
         }
     </style>
 </head>
 
 <body>
-    <center>
 
-        <h2>Happy 1st Love Anniversary, my dearest vaandeyy! 💑💕</h2>
-        <div class="box2">
-            <img src="samrutha.jpg" alt="">
-        </div>
-        <div class="box">
-            <p>
-            <h1>Happy 1st Love Anniversary, my dearest vaandeyy! 💑💕 One year ago, you walked into my life and filled
-                it
-                with love, joy, and warmth. Every moment with you has been magical, from our laughter-filled days to the
-                quiet, comforting nights💑🌙. You are my happiness🤗, my peace😄, and my greatest blessing🕺💏. Thank
-                you for loving
-                me, understanding me, and making life so beautiful. I cherish you more than words can express, and I
-                can’t wait to create countless more memories together📸. I love you endlessly thangameyy! 💖✨
-            </h1>
-            </p>
-        </div>
-        <div class="box2">
-            <img src="456.jpg" alt="">
-        </div>
-        <div class="box">
-            <h1>From the moment that we met I knew ❤
-                There was something special about you ✨
-                Every laugh every touch every kiss 💋
-                Feels like a dream I don’t wanna miss 💭
+    <h2>Happy 1st Love Anniversary, my dearest vaandeyy! 💑💕</h2>
 
-                Through the highs and the lows ⬆⬇
-                You’re the one that I chose 💑
-                No matter where this road may go 🛤
-                I’ll be right here just so you know 💞
+    <div class="box2">
+        <img src="samrutha.jpg" alt="">
+    </div>
 
-                I’ll love you forever and always 💖
-                Through the sunshine and through the rain ☀🌧
-                Every heartbeat every moment 💓
-                You're the reason I feel this way 💘
-                Forever and always I’ll stay 🥰</h1>
-        </div>
-        <button type="submit">NEXT</button>
-    </center>
+    <div class="box">
+        <h1>Happy 1st Love Anniversary, my dearest vaandeyy! 💑💕 One year ago, you walked into my life and filled it
+            with love, joy, and warmth. Every moment with you has been magical, from our laughter-filled days to the
+            quiet, comforting nights💑🌙. You are my happiness🤗, my peace😄, and my greatest blessing🕺💏. Thank
+            you for loving me, understanding me, and making life so beautiful. I cherish you more than words can express, and I
+            can’t wait to create countless more memories together📸. I love you endlessly thangameyy! 💖✨</h1>
+    </div>
+
+    <div class="box2">
+        <img src="456.jpg" alt="">
+    </div>
+
+    <div class="box">
+        <h1>From the moment that we met I knew ❤
+            There was something special about you ✨
+            Every laugh every touch every kiss 💋
+            Feels like a dream I don’t wanna miss 💭
+
+            Through the highs and the lows ⬆⬇
+            You’re the one that I chose 💑
+            No matter where this road may go 🛤
+            I’ll be right here just so you know 💞
+
+            I’ll love you forever and always 💖
+            Through the sunshine and through the rain ☀🌧
+            Every heartbeat every moment 💓
+            You're the reason I feel this way 💘
+            Forever and always I’ll stay 🥰</h1>
+    </div>
+
+    <button type="submit">NEXT</button>
+
 </body>
 
 </html>
