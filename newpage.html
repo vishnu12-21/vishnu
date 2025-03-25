@@ -51,7 +51,7 @@
 </head>
 <body>
 
-    <h2 id="message">Enna love pandra thaana??</h2>
+    <h2 id="message">Do you really love me?</h2>
     <h2>Try to click "NO" if you can🤨</h2>
 
     <div class="container">
@@ -108,6 +108,7 @@
             let yesRect = yesButton.getBoundingClientRect();
             let containerRect = document.querySelector(".container").getBoundingClientRect();
 
+            // Set initial position beside "Yes" button
             noButton.style.left = `${yesRect.right - containerRect.left + 20}px`;
             noButton.style.top = `${yesRect.top - containerRect.top}px`;
         }
