@@ -67,6 +67,7 @@
         let noButton = document.getElementById('noButton');
         let messageElement = document.getElementById('message');
         let pressCount = 0;
+        let maxPresses = 7;
 
         const messages = [
             "Are you sure? 🤨",
@@ -79,11 +80,11 @@
         ];
 
         noButton.addEventListener('click', function() {
-            if (pressCount < 6) {
+            if (pressCount < maxPresses - 1) {
                 messageElement.innerText = messages[pressCount];
                 pressCount++;
             } else {
-                messageElement.innerText = "No button disabled! Now press YES! 😏";
+                messageElement.innerText = "Now press YES!💖😁";
                 noButton.classList.add("disabled"); 
                 noButton.disabled = true;
                 noButton.removeEventListener('mouseover', moveButton);
@@ -92,7 +93,7 @@
         });
 
         function moveButton() {
-            if (pressCount >= maxPresses - 1) return;
+            if (pressCount >= maxPresses) return;
 
             let x = Math.random() * (window.innerWidth - 150);
             let y = Math.random() * (window.innerHeight - 150);
@@ -102,8 +103,9 @@
             noButton.style.top = `${y}px`;
         }
 
-        noButton.addEventListener('mouseover', moveButton);
-        noButton.addEventListener('touchstart', moveButton); 
+        noButton.addEventListener('touchstart', function() {
+            if (pressCount < maxPresses) moveButton();
+        });
     </script>
 
 </body>
