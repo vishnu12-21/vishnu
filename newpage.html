@@ -55,7 +55,14 @@
     <h2>Try to click "NO" if you can🤨</h2>
 
     <div class="container">
-        <button class="button yes" id="yesButton" onclick="alert('Good Choice! ❤️🔥')">Yes❤️</button>
+        <button class="button yes" id="yesButton" onclick="redirectToPage()">Yes❤️</button>
+
+<script>
+    function redirectToPage() {
+        window.location.href = "log3.html";
+    }
+</script>
+
         <button class="button no" id="noButton">No</button>
     </div>
 
