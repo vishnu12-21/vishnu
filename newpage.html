@@ -77,24 +77,28 @@
         ];
 
         function moveButton() {
-            if (pressCount >= maxPresses) return; 
+            if (pressCount >= maxPresses) return;
 
             let buffer = 100; // Space between Yes & No
             let screenPadding = 50; // Ensures visibility on screen
-            let centerHeight = window.innerHeight * 0.4; // Moves only within the center 40% area
+            let centerHeight = window.innerHeight * 0.4; // Keeps movement in the center
 
             let maxX = window.innerWidth - screenPadding - noButton.offsetWidth;
+            let minX = screenPadding; // Minimum X position
             let minY = (window.innerHeight * 0.3); // Minimum height (30% from top)
             let maxY = (window.innerHeight * 0.6); // Maximum height (60% from top)
 
             let x, y;
             do {
-                x = Math.random() * maxX;
+                let direction = Math.random() < 0.5 ? -1 : 1; // Move left (-1) or right (1)
+                let moveAmount = Math.random() * 200 * direction; // Move within a range of 200px
+                
+                x = noButton.offsetLeft + moveAmount;
                 y = Math.random() * (maxY - minY) + minY;
-            } while (
-                (Math.abs(x - yesButton.offsetLeft) < buffer) ||
-                x < screenPadding || x > maxX
-            );
+                
+                // Ensure it stays within the screen boundaries
+                x = Math.max(minX, Math.min(x, maxX));
+            } while (Math.abs(x - yesButton.offsetLeft) < buffer); // Prevent overlap
 
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
@@ -114,7 +118,7 @@
             if (pressCount < maxPresses) {
                 messageElement.innerText = messages[pressCount];
                 pressCount++; 
-                moveButton(); 
+                moveButton();
             }
 
             if (pressCount === maxPresses) {
