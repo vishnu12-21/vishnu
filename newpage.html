@@ -79,17 +79,20 @@
         function moveButton() {
             if (pressCount >= maxPresses) return; // Stop moving after 7 times
 
-            let x, y;
-            let buffer = 100; // Space to prevent overlap
+            let buffer = 120; // Minimum space to prevent overlap
+            let screenPadding = 50; // Keep the button within screen bounds
 
+            let maxX = window.innerWidth - screenPadding - noButton.offsetWidth;
+            let maxY = window.innerHeight - screenPadding - noButton.offsetHeight;
+
+            let x, y;
             do {
-                x = Math.random() * (window.innerWidth - 150);
-                y = Math.random() * (window.innerHeight - 150);
+                x = Math.random() * maxX;
+                y = Math.random() * maxY;
             } while (
-                (Math.abs(x - yesButton.offsetLeft) < buffer &&
-                Math.abs(y - yesButton.offsetTop) < buffer) ||
-                x < 0 || x > window.innerWidth - 100 || // Prevents moving outside screen
-                y < 0 || y > window.innerHeight - 50
+                (Math.abs(x - yesButton.offsetLeft) < buffer && Math.abs(y - yesButton.offsetTop) < buffer) ||
+                x < screenPadding || x > maxX || 
+                y < screenPadding || y > maxY
             );
 
             noButton.style.left = `${x}px`;
@@ -111,8 +114,8 @@
         noButton.addEventListener('click', function() {
             if (pressCount < maxPresses) {
                 messageElement.innerText = messages[pressCount]; // Update message immediately
-                moveButton();
-                pressCount++;
+                pressCount++; // Increase press count first
+                moveButton(); // Then move the button
             }
 
             if (pressCount === maxPresses) {
@@ -129,6 +132,7 @@
         noButton.addEventListener('touchstart', function() {
             if (pressCount < maxPresses) moveButton();
         });
+
     </script>
 
 </body>
