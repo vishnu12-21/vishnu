@@ -35,7 +35,7 @@
         .yes {
             background-color: green;
             color: white;
-            position: relative; /* Keeps Yes fixed */
+            position: relative;
         }
 
         .no {
@@ -77,51 +77,50 @@
         ];
 
         function moveButton() {
-            if (pressCount >= maxPresses) return; // Stop moving after 7 times
+            if (pressCount >= maxPresses) return; 
 
-            let buffer = 120; // Minimum space to prevent overlap
-            let screenPadding = 50; // Keep the button within screen bounds
+            let buffer = 100; // Space between Yes & No
+            let screenPadding = 50; // Ensures visibility on screen
+            let centerHeight = window.innerHeight * 0.4; // Moves only within the center 40% area
 
             let maxX = window.innerWidth - screenPadding - noButton.offsetWidth;
-            let maxY = window.innerHeight - screenPadding - noButton.offsetHeight;
+            let minY = (window.innerHeight * 0.3); // Minimum height (30% from top)
+            let maxY = (window.innerHeight * 0.6); // Maximum height (60% from top)
 
             let x, y;
             do {
                 x = Math.random() * maxX;
-                y = Math.random() * maxY;
+                y = Math.random() * (maxY - minY) + minY;
             } while (
-                (Math.abs(x - yesButton.offsetLeft) < buffer && Math.abs(y - yesButton.offsetTop) < buffer) ||
-                x < screenPadding || x > maxX || 
-                y < screenPadding || y > maxY
+                (Math.abs(x - yesButton.offsetLeft) < buffer) ||
+                x < screenPadding || x > maxX
             );
 
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
         }
 
-        // Set initial "No" button position beside "Yes"
         function setInitialPosition() {
             let yesRect = yesButton.getBoundingClientRect();
             let containerRect = document.querySelector(".container").getBoundingClientRect();
 
-            noButton.style.left = `${yesRect.right - containerRect.left + 20}px`; // 20px gap beside Yes
+            noButton.style.left = `${yesRect.right - containerRect.left + 20}px`;
             noButton.style.top = `${yesRect.top - containerRect.top}px`;
         }
 
-        // Call function to position No button correctly on page load
         window.onload = setInitialPosition;
 
         noButton.addEventListener('click', function() {
             if (pressCount < maxPresses) {
-                messageElement.innerText = messages[pressCount]; // Update message immediately
-                pressCount++; // Increase press count first
-                moveButton(); // Then move the button
+                messageElement.innerText = messages[pressCount];
+                pressCount++; 
+                moveButton(); 
             }
 
             if (pressCount === maxPresses) {
                 messageElement.innerText = "Now press YES! 💖😁";
                 noButton.classList.add("disabled");
-                noButton.disabled = true; // Disable button
+                noButton.disabled = true;
             }
         });
 
