@@ -51,7 +51,7 @@
 </head>
 <body>
 
-    <h2 id="message">Do you really love me?</h2>
+    <h2 id="message">Enna love pandra thaana??</h2>
     <h2>Try to click "NO" if you can🤨</h2>
 
     <div class="container">
@@ -79,26 +79,26 @@
         function moveButton() {
             if (pressCount >= maxPresses) return;
 
-            let buffer = 100; // Space between Yes & No
+            let buffer = 120; // Minimum space between Yes & No
             let screenPadding = 50; // Ensures visibility on screen
             let centerHeight = window.innerHeight * 0.4; // Keeps movement in the center
 
             let maxX = window.innerWidth - screenPadding - noButton.offsetWidth;
             let minX = screenPadding; // Minimum X position
-            let minY = (window.innerHeight * 0.3); // Minimum height (30% from top)
-            let maxY = (window.innerHeight * 0.6); // Maximum height (60% from top)
+            let minY = window.innerHeight * 0.3; // Minimum height (30% from top)
+            let maxY = window.innerHeight * 0.6; // Maximum height (60% from top)
 
             let x, y;
             do {
-                let direction = Math.random() < 0.5 ? -1 : 1; // Move left (-1) or right (1)
-                let moveAmount = Math.random() * 200 * direction; // Move within a range of 200px
+                let direction = Math.random() < 0.5 ? -1 : 1; // Randomly move left or right
+                let moveAmount = Math.random() * 250 * direction; // Move max 250px in either direction
                 
                 x = noButton.offsetLeft + moveAmount;
                 y = Math.random() * (maxY - minY) + minY;
                 
                 // Ensure it stays within the screen boundaries
                 x = Math.max(minX, Math.min(x, maxX));
-            } while (Math.abs(x - yesButton.offsetLeft) < buffer); // Prevent overlap
+            } while (Math.abs(x - yesButton.offsetLeft) < buffer); // Prevent overlap with "Yes"
 
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
