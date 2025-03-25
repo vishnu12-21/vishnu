@@ -3,104 +3,115 @@
 
 
  <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Try Clicking "No" 🤣</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin-top: 50px;
-            overflow: hidden;
-        }
-
-        .container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .button {
-            font-size: 20px;
-            padding: 10px 20px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            position: absolute;
-            transition: left 0.3s ease, top 0.3s ease;
-        }
-
-        .yes {
-            background-color: green;
-            color: white;
-            position: relative; /* Keeps Yes fixed */
-        }
-
-        .no {
-            background-color: red;
-            color: white;
-        }
-
-        .disabled {
-            background-color: grey !important;
-            cursor: not-allowed;
-        }
-    </style>
-</head>
-<body>
-
-    <h2 id="message">Do you really love me?</h2>
-    <h2>Try to click "NO" if you can🤨</h2>
-
-    <div class="container">
-        <button class="button yes" id="yesButton" onclick="alert('Good Choice! ❤️🔥')">Yes❤️</button>
-        <button class="button no" id="noButton">No</button>
-    </div>
-
-    <script>
-        let noButton = document.getElementById('noButton');
-        let yesButton = document.getElementById('yesButton');
-        let messageElement = document.getElementById('message');
-        let pressCount = 0;
-        let maxPresses = 7;
-
-        const messages = [
-            "No press panna sonna panniduviya? 🤨",
-            "enna d kolupaa 😏",
-            "break up panniruve 🧐",
-            "intha ponnuku en mela paasame ila 😱",
-            "saavadi vaanga pora naaye😳",
-            "athu thaa oduthula yes ah press pannu 😡",
-            "Ithuku mela no button vela seiyathu 🔥 "
-        ];
-
-        function moveButton() {
-            if (pressCount >= maxPresses) return; // Stop moving after 7 times
-
-            let x, y;
-            let buffer = 100; // Space to prevent overlap
-
-            do {
-                x = Math.random() * (window.innerWidth - 150);
-                y = Math.random() * (window.innerHeight - 150);
-            } while (
-                Math.abs(x - yesButton.offsetLeft) < buffer &&
-                Math.abs(y - yesButton.offsetTop) < buffer
-            );
-
-            noButton.style.left = `${x}px`;
-            noButton.style.top = `${y}px`;
-        }
-
-        noButton.addEventListener('click', function() {
-            if (pressCount < maxPresses) {
-                messageElement.innerText = messages[pressCount]; // Update message immediately
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Try Clicking "No" 🤣</title>
+     <style>
+         body {
+             text-align: center;
+             font-family: Arial, sans-serif;
+             margin-top: 50px;
+             overflow: hidden;
+         }
+ 
+         .container {
+             position: relative;
+             width: 100%;
+             height: 400px;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             gap: 20px;
+         }
+ 
+         .button {
+             font-size: 20px;
+             padding: 10px 20px;
+             cursor: pointer;
+             border: none;
+             border-radius: 5px;
+             position: absolute;
+             transition: left 0.3s ease, top 0.3s ease;
+         }
+ 
+         .yes {
+             background-color: green;
+             color: white;
+             position: relative; /* Keeps Yes fixed */
+         }
+ 
+         .no {
+             background-color: red;
+             color: white;
+             left: 120px; /* Start position beside Yes */
+         }
+ 
+         .disabled {
+             background-color: grey !important;
+             cursor: not-allowed;
+         }
+     </style>
+ </head>
+ <body>
+ 
+     <h2 id="message">Do you really love me?</h2>
+     <h2>Try to click "NO" if you can🤨</h2>
+ 
+     <div class="container">
+         <button class="button yes" id="yesButton" onclick="alert('Good Choice! ❤️🔥')">Yes❤️</button>
+         <button class="button no" id="noButton">No</button>
+     </div>
+ 
+     <script>
+         let noButton = document.getElementById('noButton');
+         let yesButton = document.getElementById('yesButton');
+         let messageElement = document.getElementById('message');
+         let pressCount = 0;
+         let maxPresses = 7;
+ 
+         const messages = [
+             "No press panna sonna panniduviya? 🤨",
+             "enna d kolupaa 😏",
+             "break up panniruve 🧐",
+             "intha ponnuku en mela paasame ila 😱",
+             "saavadi vaanga pora naaye😳",
+             "athu thaa oduthula yes ah press pannu 😡",
+             "Ithuku mela no button vela seiyathu 🔥 "
+         ];
+ 
+         function moveButton() {
+             if (pressCount >= maxPresses) return; 
+ 
+             let x, y;
+             let buffer = 120; 
+ 
+             do {
+                 x = Math.random() * (window.innerWidth - 150);
+                 y = Math.random() * (window.innerHeight - 150);
+             } while (
+                 Math.abs(x - yesButton.offsetLeft) < buffer &&
+                 Math.abs(y - yesButton.offsetTop) < buffer
+             );
+ 
+             noButton.style.left = `${x}px`;
+             noButton.style.top = `${y}px`;
+         }
+ 
+         
+         function setInitialPosition() {
+             let yesRect = yesButton.getBoundingClientRect();
+             noButton.style.left = `${yesRect.right + 20}px`; 
+             noButton.style.top = `${yesRect.top}px`;
+         }
+ 
+        
+         window.onload = setInitialPosition;
+ 
+         noButton.addEventListener('click', function() {
+             if (pressCount < maxPresses) {
+                 messageElement.innerText = messages[pressCount]; 
                 moveButton();
                 pressCount++;
             }
@@ -108,7 +119,7 @@
             if (pressCount === maxPresses) {
                 messageElement.innerText = "Now press YES! 💖😁";
                 noButton.classList.add("disabled");
-                noButton.disabled = true; // Disable button
+                noButton.disabled = true; 
             }
         });
 
@@ -123,3 +134,4 @@
 
 </body>
 </html>
+ 
