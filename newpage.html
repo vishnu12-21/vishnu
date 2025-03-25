@@ -1,0 +1,108 @@
+<!-- JUMP OFF BUTTON -->
+ <!-- --------------------------------- -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Clicking "No" 🤣</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 100px;
+            background-image: url(no1.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 50vh;
+        }
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+        .button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease-in-out;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
+            position: absolute;
+            transition: transform 0.1s ease-in-out, font-size 0.2s ease-in-out;
+        }
+        .emoji {
+            font-size: 30px;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .real{
+            font-size: 30px;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;  
+        }
+    </style>
+</head>
+<body>
+
+    <h2 id="message">Do you really love me?</h2>
+
+    <div class="container">
+        <button class="button yes" onclick="alert('Good Choice! ❤️🔥')">Yes</button>
+        <button class="button no" id="noButton">No</button>
+    </div>
+
+    <script>
+        let noButton = document.getElementById('noButton');
+        let messageElement = document.getElementById('message');
+        let pressCount = 0;
+
+        const messages = [
+            "Are you sure? 🤨",
+            "enna d kolupaa 😏",
+            "break up panniruve 😳",
+            "intha ponnuku en mela paasame ila 😱",
+            "saavadi vaanga pora naaye😳",
+            "athu thaa oduthula yes ah press pannu 😡",
+            "Ithuku mela no button vela seiyathu 🔥 "
+        ];
+
+        noButton.addEventListener('click', function() {
+            if (pressCount < 6) {
+                messageElement.innerText = messages[pressCount];
+                pressCount++;
+            } else {
+                messageElement.innerText = "No button disabled! Now press YES! 😏";
+                noButton.disabled = true;
+                noButton.style.backgroundColor = "grey";
+            }
+        });
+
+        function moveButton() {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 100);
+
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        // Detect touch or mouse hover and move the button
+        noButton.addEventListener('mouseover', moveButton);
+        noButton.addEventListener('touchstart', moveButton); // For mobile
+    </script>
+
+</body>
+</html>
