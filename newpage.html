@@ -13,7 +13,7 @@
             text-align: center;
             font-family: Arial, sans-serif;
             margin-top: 50px;
-            overflow: hidden; 
+            overflow: hidden;
         }
 
         .container {
@@ -23,7 +23,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             gap: 20px;
         }
 
@@ -33,7 +32,6 @@
             cursor: pointer;
             border: none;
             border-radius: 5px;
-            position: relative;
             transition: left 0.3s ease, top 0.3s ease;
         }
 
@@ -45,6 +43,7 @@
         .no {
             background-color: red;
             color: white;
+            position: absolute; 
         }
 
         .disabled {
@@ -52,6 +51,7 @@
             cursor: not-allowed;
         }
     </style>
+
 </head>
 <body>
 
@@ -59,7 +59,7 @@
     <h2 id="msg">Try to click no if you can😏</h2>
 
     <div class="container">
-        <button class="button yes" onclick="alert('Good Choice! ❤️🔥')">Yes</button>
+        <button class="button yes" onclick="alert('Good Choice! ❤️🔥')">Yes❤️</button>
         <button class="button no" id="noButton">No</button>
     </div>
 
@@ -70,9 +70,9 @@
         let maxPresses = 7;
 
         const messages = [
-            "Are you sure? 🤨",
+            "NO press panna sonna panniduviya?? 🤨",
             "enna d kolupaa 😏",
-            "break up panniruve 😳",
+            "break up panniruve 🧐",
             "intha ponnuku en mela paasame ila 😱",
             "saavadi vaanga pora naaye😳",
             "athu thaa oduthula yes ah press pannu 😡",
@@ -81,31 +81,35 @@
 
         noButton.addEventListener('click', function() {
             if (pressCount < maxPresses - 1) {
-                messageElement.innerText = messages[pressCount];
+                messageElement.innerText = messages[pressCount]; 
                 pressCount++;
             } else {
-                messageElement.innerText = "Now press YES!💖😁";
+                messageElement.innerText = "No button disabled! Now press YES! 😏";
                 noButton.classList.add("disabled"); 
-                noButton.disabled = true;
+                noButton.disabled = true; 
                 noButton.removeEventListener('mouseover', moveButton);
                 noButton.removeEventListener('touchstart', moveButton);
             }
         });
 
         function moveButton() {
-            if (pressCount >= maxPresses) return;
+            if (pressCount >= maxPresses) return; 
 
             let x = Math.random() * (window.innerWidth - 150);
             let y = Math.random() * (window.innerHeight - 150);
 
-            noButton.style.position = "absolute";
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
         }
 
+        noButton.addEventListener('mouseover', function() {
+            if (pressCount < maxPresses) moveButton();
+        });
+ 
         noButton.addEventListener('touchstart', function() {
             if (pressCount < maxPresses) moveButton();
         });
+
     </script>
 
 </body>
