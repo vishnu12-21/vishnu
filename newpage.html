@@ -33,7 +33,7 @@
             cursor: pointer;
             border: none;
             border-radius: 5px;
-            position: absolute;
+            position: relative;
             transition: left 0.3s ease, top 0.3s ease;
         }
 
@@ -56,6 +56,7 @@
 <body>
 
     <h2 id="message">Do you really love me?</h2>
+    <h2 id="msg">Try to click no if you can😏</h2>
 
     <div class="container">
         <button class="button yes" onclick="alert('Good Choice! ❤️🔥')">Yes</button>
@@ -83,15 +84,20 @@
                 pressCount++;
             } else {
                 messageElement.innerText = "No button disabled! Now press YES! 😏";
+                noButton.classList.add("disabled"); 
                 noButton.disabled = true;
-                noButton.style.backgroundColor = "grey";
+                noButton.removeEventListener('mouseover', moveButton);
+                noButton.removeEventListener('touchstart', moveButton);
             }
         });
 
         function moveButton() {
-            let x = Math.random() * (window.innerWidth - 100);
-            let y = Math.random() * (window.innerHeight - 100);
+            if (pressCount >= maxPresses - 1) return;
 
+            let x = Math.random() * (window.innerWidth - 150);
+            let y = Math.random() * (window.innerHeight - 150);
+
+            noButton.style.position = "absolute";
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
         }
