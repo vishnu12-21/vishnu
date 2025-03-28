@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Try Clicking "No" 🤣</title>
+    <title>Do You Love Me?</title>
     <style>
         body {
             text-align: center;
@@ -15,15 +15,14 @@
         .container {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 50vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
         }
 
         .button {
-            font-size: 20px;
+            font-size: 18px;
             padding: 10px 20px;
             cursor: pointer;
             border: none;
@@ -36,11 +35,13 @@
             background-color: green;
             color: white;
             position: relative;
+            z-index: 2;
         }
 
         .no {
             background-color: red;
             color: white;
+            z-index: 3;
         }
 
         .disabled {
@@ -56,17 +57,14 @@
 
     <div class="container">
         <button class="button yes" id="yesButton" onclick="redirectToPage()">Yes❤️</button>
-
-<script>
-    function redirectToPage() {
-        window.location.href = "log3.html";
-    }
-</script>
-
         <button class="button no" id="noButton">No</button>
     </div>
 
     <script>
+        function redirectToPage() {
+            window.location.href = "log3.html";
+        }
+
         let noButton = document.getElementById('noButton');
         let yesButton = document.getElementById('yesButton');
         let messageElement = document.getElementById('message');
@@ -75,37 +73,30 @@
 
         const messages = [
             "No press panna sonna panniduviya? 🤨",
-            "enna d kolupaa 😏",
-            "break up panniruve 🧐",
-            "intha ponnuku en mela paasame ila 😱",
-            "saavadi vaanga pora naaye😳",
-            "athu thaa oduthula yes ah press pannu 😡",
-            "Ithuku mela no button vela seiyathu 🔥 "
+            "Enna da kolupu 😏",
+            "Break up panniruve 🧐",
+            "Intha ponnuku en mela paasame ila 😱",
+            "Saavadi vaanga pora naaye😳",
+            "Athuthaa oduthu, Yes ah press pannu 😡",
+            "Ithuku mela no button vela seiyathu 🔥"
         ];
 
         function moveButton() {
             if (pressCount >= maxPresses) return;
 
-            let buffer = 120; // Minimum space between Yes & No
-            let screenPadding = 50; // Ensures visibility on screen
-            let centerHeight = window.innerHeight * 0.4; // Keeps movement in the center
+            let buffer = 100;
+            let screenPadding = 20;
 
-            let maxX = window.innerWidth - screenPadding - noButton.offsetWidth;
-            let minX = screenPadding; // Minimum X position
-            let minY = window.innerHeight * 0.3; // Minimum height (30% from top)
-            let maxY = window.innerHeight * 0.6; // Maximum height (60% from top)
+            let maxX = window.innerWidth - noButton.offsetWidth - screenPadding;
+            let minX = screenPadding;
+            let maxY = window.innerHeight * 0.5 - noButton.offsetHeight; 
+            let minY = screenPadding;
 
             let x, y;
             do {
-                let direction = Math.random() < 0.5 ? -1 : 1; // Randomly move left or right
-                let moveAmount = Math.random() * 250 * direction; // Move max 250px in either direction
-                
-                x = noButton.offsetLeft + moveAmount;
+                x = Math.random() * (maxX - minX) + minX;
                 y = Math.random() * (maxY - minY) + minY;
-                
-                // Ensure it stays within the screen boundaries
-                x = Math.max(minX, Math.min(x, maxX));
-            } while (Math.abs(x - yesButton.offsetLeft) < buffer); // Prevent overlap with "Yes"
+            } while (Math.abs(x - yesButton.offsetLeft) < buffer);
 
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
@@ -114,18 +105,20 @@
         function setInitialPosition() {
             let yesRect = yesButton.getBoundingClientRect();
             let containerRect = document.querySelector(".container").getBoundingClientRect();
-
-            // Set initial position beside "Yes" button
-            noButton.style.left = `${yesRect.right - containerRect.left + 20}px`;
+            
+            noButton.style.left = `${yesRect.right - containerRect.left + 50}px`;
             noButton.style.top = `${yesRect.top - containerRect.top}px`;
         }
 
-        window.onload = setInitialPosition;
+        window.onload = function() {
+            setInitialPosition();
+            noButton.style.display = "block";
+        };
 
-        noButton.addEventListener('click', function() {
+        function handleNoClick() {
             if (pressCount < maxPresses) {
-                messageElement.innerText = messages[pressCount];
-                pressCount++; 
+                messageElement.innerText = messages[pressCount]; 
+                pressCount++;
                 moveButton();
             }
 
@@ -134,16 +127,11 @@
                 noButton.classList.add("disabled");
                 noButton.disabled = true;
             }
-        });
+        }
 
-        noButton.addEventListener('mouseover', function() {
-            if (pressCount < maxPresses) moveButton();
-        });
-
-        noButton.addEventListener('touchstart', function() {
-            if (pressCount < maxPresses) moveButton();
-        });
-
+        noButton.addEventListener('click', handleNoClick);
+        noButton.addEventListener('mouseover', handleNoClick);
+        noButton.addEventListener('touchstart', handleNoClick);
     </script>
 
 </body>
